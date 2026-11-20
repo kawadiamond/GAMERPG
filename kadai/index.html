@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/sample.css">
+</head>
+<body>
+<header>
+<h1>GAME RPG</h1>
+</header>
+<main>
+    <div class="btn-area">
+        <button id="start" class="btn btn-start">GAME START</button>
+    </div>
+    <div id="enemy"></div>
+    <div id="comment"></div>
+    <div id="player" class="btn-area btn-row">
+        <button id="attack" class="btn btn-attack">ATTACK</button>
+    </div>
+    <input type="text" id="key">
+    <textarea id="memo"></textarea>
+</main>
+<table id="list">
+<!-- ここに追加データが挿入される -->
+ <tr><td></td><td></td></tr>
+</table>
+<script>
+// グローバル変数の定義
+let enemyName = ""; 
+let enemyHP = 0;
+//アタックボタンを消す
+$("#attack").hide();
+
+// ページ読み込み時に保存データを表示
+$(document).ready(function(){
+    loadData();
+});
+
+// ゲームスタートのクリックイベント
+$("#start").on("click", function(){
+    playingGame();
+});
+
+// ゲーム準備・初期化関数
+function playingGame(){
+    // 1. 変数のリセット（連続プレイ用）
+    enemyName = "";
+    enemyHP = 0;
+
+//ゲームスタート時にATTACKボタンを表示する
+$("#attack").show();
+
+
+    // アルファベット（v~yが抜けていたので追加・整理しています）
+    const source = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+    // 敵文字配列決定 + HP決定
+    let letterCount = Math.floor(Math.random() * source.length) + 1;
+    
+    for(let i = 0 ; i < letterCount ; i++){
+       let letternumber = Math.floor(Math.random() * source.length);
+       enemyName += source[letternumber];
+       enemyHP += letternumber;
+    }
+
+    // 画面表示の更新
+    $("#enemy").html("敵: " + enemyName);
+    $("#comment").html("敵があらわれた！ HP: " + enemyHP);
+}
+
+// プレイヤーの攻撃力算出関数
+function playerAttack(){
+   return Math.ceil(Math.random() * 10) + 1; // 計算式を少しシンプルに調整
+}
+
+// 2. 攻撃ボタンのクリックイベント（必ず関数の外に出す）
+$("#attack").on("click", function(){
+    // 敵がいない（HPが0以下）場合は攻撃できないようにする
+    if(enemyHP <= 0) return;
+
+    let attack = playerAttack();
+    enemyHP -= attack;
+
+    if(enemyHP <= 0){
+        enemyHP = 0;
+        $("#comment").html(attack + "ダメージ！ 敵を倒した！");
+        $("#attack").hide();// HP０になったらアタックボタンを消す
+        // 画面の描画を待ってからconfirmを出すためのsetTimeout
+        setTimeout(function(){
+            let savecheck = confirm("敵を倒した！！ ここまでを保存しますか？");
+            if(savecheck){
+                // 3. キーが被らないように「タイムスタンプ」を利用する
+                const now = new Date();
+                const year = now.getFullYear(); //年の取得
+                const month = now.getMonth()+1;   //月の取得
+                const day  = now.getDate();     //日の取得
+                const hour = now.getHours();    //時間の取得
+                const minuite = now.getMinutes();// 分の取得
+                let data = "討伐"+year+"年"+month+"月"+day+"日"+hour+"時"+minuite+"分";
+                let key = data;
+                localStorage.setItem(key, enemyName);
+                loadData();
+            }
+        }, 100);
+    } else {
+        $("#comment").html(attack + "ダメージ！ 残りHP: " + enemyHP);
+    }
+});
+
+// 履歴表示関数
+function loadData(){
+  $("#list").empty();
+  for(let i = 0; i < localStorage.length; i++){
+     const key = localStorage.key(i);
+     const memo = localStorage.getItem(key);
+     $("#list").append('<tr><td>' + key + '</td><td>' + memo + '</td></tr>');
+  }
+}
+
+</script>
+<footer>G's GAME PRODUCTION TEAM</footer>
+</body>
+</html>
