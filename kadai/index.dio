@@ -1,0 +1,111 @@
+<mxfile host="65bd71144e">
+    <diagram id="n5X_Fj1gBUJxacipKJhM" name="ページ-1">
+        <mxGraphModel dx="460" dy="652" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="4U_arOhoZyIjRY6LpXe3-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="start" vertex="1">
+                    <mxGeometry height="60" width="120" x="250" y="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="d1" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="初めて?&lt;br&gt;続きから?" vertex="1">
+                    <mxGeometry height="90" width="160" x="230" y="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="new" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ゲームスタート&lt;br&gt;(ポイント0で開始)" vertex="1">
+                    <mxGeometry height="60" width="160" x="40" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="load" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="localStorageから&lt;br&gt;セーブデータ・最高得点・&lt;br&gt;その敵の文字列を読込" vertex="1">
+                    <mxGeometry height="60" width="160" x="420" y="430" as="geometry"/>
+                </mxCell>
+                <mxCell id="gen" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="アルファベット25文字から&lt;br&gt;ランダムに何文字か出す" vertex="1">
+                    <mxGeometry height="60" width="200" x="210" y="540" as="geometry"/>
+                </mxCell>
+                <mxCell id="hp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="HP計算&lt;br&gt;(同じ文字が多いほどHPが高い)" vertex="1">
+                    <mxGeometry height="60" width="200" x="210" y="640" as="geometry"/>
+                </mxCell>
+                <mxCell id="win" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="倒した?" vertex="1">
+                    <mxGeometry height="80" width="140" x="240" y="740" as="geometry"/>
+                </mxCell>
+                <mxCell id="pt" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ポイント獲得&lt;br&gt;(ポイント数 = HP)" vertex="1">
+                    <mxGeometry height="60" width="200" x="210" y="860" as="geometry"/>
+                </mxCell>
+                <mxCell id="save" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="localStorageに保存&lt;br&gt;(ポイント・最高得点・&lt;br&gt;その敵の文字列 / 1回終わるごと)" vertex="1">
+                    <mxGeometry height="60" width="200" x="210" y="1110" as="geometry"/>
+                </mxCell>
+                <mxCell id="cont" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="続ける?" vertex="1">
+                    <mxGeometry height="80" width="140" x="240" y="1210" as="geometry"/>
+                </mxCell>
+                <mxCell id="end" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="end" vertex="1">
+                    <mxGeometry height="60" width="120" x="250" y="1330" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" edge="1" parent="1" source="4U_arOhoZyIjRY6LpXe3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="d1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" edge="1" parent="1" source="d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="new" value="初めて">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" edge="1" parent="1" source="d1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="load" value="続きから">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" edge="1" parent="1" source="new" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="gen">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" edge="1" parent="1" source="load" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="gen">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" edge="1" parent="1" source="gen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="hp">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" edge="1" parent="1" source="hp" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="win">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" edge="1" parent="1" source="win" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="pt" value="Yes">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" edge="1" parent="1" source="win" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" target="gen" value="No (再度文字を出す)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="500" y="780"/>
+                            <mxPoint x="500" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hi" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="合計ポイントが&lt;br&gt;最高得点を超えた?" vertex="1">
+                    <mxGeometry height="90" width="180" x="220" y="960" as="geometry"/>
+                </mxCell>
+                <mxCell id="hiup" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="最高得点と&lt;br&gt;その敵の文字列を更新" vertex="1">
+                    <mxGeometry height="80" width="160" x="450" y="965" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" edge="1" parent="1" source="pt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="hi">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10a" edge="1" parent="1" source="hi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="hiup" value="Yes">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10b" edge="1" parent="1" source="hiup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" target="save">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="530" y="1140"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e10c" edge="1" parent="1" source="hi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="save" value="No">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" edge="1" parent="1" source="save" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="cont">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" edge="1" parent="1" source="cont" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" target="end" value="No">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" edge="1" parent="1" source="cont" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" target="gen" value="Yes (次の敵)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="120" y="1250"/>
+                            <mxPoint x="120" y="570"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
